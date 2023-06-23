@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  sunshine:
+    image: ghcr.io/games-on-whales/wolf:stable
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./tempConfig:/config
+      - ./tempSteam:/steam
+      - ./tempLutris:/lutris
+      - ./tempGames:/games
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    ports:
+      - "47984-47990:47984-47990/tcp"
+      - "48010:48010"
+      - "47998-48000:47998-48000/udp"
